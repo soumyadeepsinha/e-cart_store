@@ -1,0 +1,106 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+      <!-- Home cards 1 -->
+    <section class="home-cards">
+      <div>
+        <img src="https://i.ibb.co/LZPVKq9/card1.png" alt="">
+        <h3>New Surface Pro 7</h3>
+        <p>
+          See how Katie Sowers, Asst. Coach for the 49ers, uses Surface Pro 7
+						to put her plans into play.
+        </p>
+        <a href="#">Learn More <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div>
+        <img src="https://i.ibb.co/KjGFHVJ/card2.png" alt="" />
+        <h3>New Surface 3</h3>
+        <p>
+          Express yourself powerfully with a thin, light, and elegant design,
+          faster performance.
+        </p>
+        <a href="#">Learn More <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div>
+        <img src="https://i.ibb.co/2cnshH6/card3.png" alt="" />
+        <h3>Xbox + controller</h3>
+        <p>
+          Buy an Xbox One X console and select
+          extra controller. Starting at $349.
+        </p>
+        <a href="#">Learn More <i class="fas fa-chevron-right"></i></a>
+      </div>
+      <div>
+        <img src="https://i.ibb.co/G57P0Pb/card4.png" alt="" />
+        <h3>Modern Edge</h3>
+        <p>
+          Expect more. World class performance, with more privacy & productivity, and more value.
+        </p>
+        <a href="#">Learn More <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </section>
+
+<div class="row">
+{% for product in products %}
+  <div class="col-lg-4">
+    <img class="thumbnail" src="{{product.imageURL}}" alt="" />
+    <div class="box-element product">
+      <h6><strong>{{product.name}}</strong></h6>
+      <hr />
+      <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+      <a class="btn btn-outline-success" href="#">View</a>
+      <h4 style="float: right; display: inline-block;">
+      {{product.price|floatformat:2}}
+      </h4>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!-- Links -->
+      <hr />
+      <section class="links">
+        <div class="links-inner">
+          <ul>
+            <li><h3>What's New</h3></li>
+            <li><a href="#">Surface Pro X</a></li>
+            <li><a href="#">DELL XPS 17 2020</a></li>
+            <li><a href="#">iPhone XI Pro</a></li>
+            <li><a href="#">RealMe Buds</a></li>
+          </ul>
+          <ul>
+            <li><h3>Account</h3></li>
+            <li><a href="#">Account Profile</a></li>
+            <li><a href="{% url 'cart' %}">Your Cart</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Order Tracking</a></li>
+          </ul>
+          <ul>
+            <li><h3>Enterprise</h3></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Automotive</a></li>
+            <li><a href="#">Government</a></li>
+            <li><a href="#">Healthcare</a></li>
+          </ul>
+          <ul>
+            <li><h3>Company</h3></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">About My-ECommerce</a></li>
+            <li><a href="#">Privacy Policy/a></li>
+            <li><a href="#">Inverstors</a></li>
+          </ul>
+        </div>
+      </section>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <div><i class="fas fa-globe fa-2x"></i> English (India)</div>
+          <ul>
+            <li><a href="{% url 'store' %}">Products</a></li>
+					<li><a href="{% url 'store' %}">Best Sellers</a></li>
+					<li><a href="{% url 'store' %}">Best Deals</a></li>
+					<li><a href="{% url 'store' %}">Contact myecommerce</a></li>
+					<li><a href="{% url 'store' %}">&copy; MyE-Commerce 2020</a></li>
+          </ul>
+        </div>
+      </footer>
+{% endblock content %}
