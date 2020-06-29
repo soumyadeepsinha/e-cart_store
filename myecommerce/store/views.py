@@ -4,6 +4,7 @@ import json
 from .models import *
 
 # Create your views here.
+
 def store(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -11,12 +12,13 @@ def store(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
+        # for not logged in user
         items = {}
         order = {"get_cart_total": 0, "get_cart_items": 0}
         cartItems = order['get_cart_items']
 
     products = Product.objects.all()
-    context = {"products": products, 'cartItems': cartItems}
+    context = {"products": products, 'cartItems': cartItems, 'shipping': False}
     return render(request, "store/store.html", context)
 
 
@@ -27,11 +29,12 @@ def cart(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
+        # for not logged in user
         items = {}
         order = {"get_cart_total": 0, "get_cart_items": 0}
         cartItems = order['get_cart_items']
 
-    context = {"items": items, "order": order, 'cartItems': cartItems}
+    context = {"items": items, "order": order, 'cartItems': cartItems, 'shipping': False}
     return render(request, "store/cart.html", context)
 
 
@@ -42,11 +45,12 @@ def checkout(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_items
     else:
+        # for not logged in user
         items = {}
         order = {"get_cart_total": 0, "get_cart_items": 0}
         cartItems = order['get_cart_items']
 
-    context = {"items": items, "order": order, 'cartItems': cartItems}
+    context = {"items": items, "order": order, 'cartItems': cartItems, 'shipping': False}
     return render(request, "store/checkout.html", context)
 
 
