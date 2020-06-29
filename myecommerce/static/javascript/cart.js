@@ -1,35 +1,37 @@
 var updatebtn = document.getElementsByClassName('update-cart')
 
 for (i = 0; i < updatebtn.length; i++) {
-  updatebtn[i].addEventListener('click', function () {
-    var productID = this.dataset.product
+  updatebtn[i].addEventListener('click', function() {
+    var productId = this.dataset.product
     var action = this.dataset.action
-    console.log('productId: ', productID, ' Action: ', action)
-    console.log('USER: ', user)
-    if (user === AnonymousUser) {
+    console.log('productId:', productId, 'action:', action)
+    console.log('USER:', user)
+    if (user === 'AnonymousUser') {
       conslole.log("Not Logged in")
     } else {
-      updateUserOrder(productID, action)
+      updateUserOrder(productId, action)
     }
   })
 }
 
-function updateUserOrder(productID, action) {
+function updateUserOrder(productId, action) {
   console.log('User is authenticated, sending data..!')
 
-  var url = './update_item/'
+  var url = '/updateitem/'
 
   fetch(url, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrftoken,
     },
-    body: JSON.stringify({ 'productId: ', productID, 'action': action })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log('data: ', data)
-      })
+    body: JSON.stringify({ 'productId': productId, 'action': action })
   })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+        console.log('data:', data)
+        location.reload()
+    })
 }
