@@ -2,82 +2,40 @@
 <div class="row">
   <div class="col-lg-6">
     <div class="box-element" id="form-wrapper">
-      <div id="user-info">
-        <div class="form-field">
-          <input
-            class="form-content"
-            type="text"
-            name="name"
-            placeholder="Your Name .."
-            required
-          />
+      <form id="form">
+        <div id="user-info">
+          <div class="form-field">
+           <input class="form-content" type="text" name="name" placeholder="Your Name .." required />
+          </div>
+          <div class="form-field">
+           <input class="form-content" type="text" name="email" placeholder="Your Email .." required />
+          </div>
+          <hr />
+          <div id="shipping-info">
+            <p>Shipping Information:</p>
+            <hr />
+            <div class="form-field">
+              <input class="form-control" type="text" name="address" placeholder="Address".. />
+            </div>
+            <div class="form-field">
+              <input class="form-control" type="text" name="city" placeholder="City.." />
+            </div>
+            <div class="form-field">
+              <input class="form-control" type="text"  name="state"  placeholder="State.."  />
+            </div>
+            <div class="form-field">
+            <input class="form-control" type="text" name="zipcode" placeholder="Zip code.." />
+            </div>
+          </div>
         </div>
-        <div class="form-field">
-          <input
-            class="form-content"
-            type="text"
-            name="email"
-            placeholder="Your Email .."
-            required
-          />
-        </div>
-      </div>
-      <div id="shipping-info">
-        <hr />
-        <p>Shipping Information:</p>
-        <hr />
-        <div class="form-field">
-          <input
-            class="form-control"
-            type="text"
-            name="address"
-            placeholder="Address.."
-          />
-        </div>
-        <div class="form-field">
-          <input
-            class="form-control"
-            type="text"
-            name="city"
-            placeholder="City.."
-          />
-        </div>
-        <div class="form-field">
-          <input
-            class="form-control"
-            type="text"
-            name="state"
-            placeholder="State.."
-          />
-        </div>
-        <div class="form-field">
-          <input
-            class="form-control"
-            type="text"
-            name="zipcode"
-            placeholder="Zip code.."
-          />
-        </div>
-        <div class="form-field">
-          <input
-            class="form-control"
-            type="text"
-            name="country"
-            placeholder="Country.."
-          />
-        </div>
-      </div>
-      <hr />
-      <input
-        id="form-button"
-        type="submit"
-        class="btn btn-outline-success btn-block"
-        value="Continue"
-      />
+          <hr />
+          <input id="form-button" type="submit" class="btn btn-outline-success btn-block" value="Continue"  />
+      </form>
     </div>
     <br>
 			<div class="box-element hidden" id="payment-info">
-				<small>Paypal Options</small>
+        <small>Paypal Options</small>
+        <button id="make-payemnt">Make Payment</button>
 			</div>
   </div>
 	<div class="col-lg-6">
@@ -105,5 +63,12 @@
   if(shipping == 'False') {
     document.getElementById('shipping-info').innerHTML = ''
   }
+  var form = document.getElementById('form')
+  form.addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log('Form Submitted...');
+    document.getElementById('form-button').classList.add('hidden')
+    document.getElementById('payment-info').classList.remove('hidden')
+  })
 </script>
 {% endblock content %}
