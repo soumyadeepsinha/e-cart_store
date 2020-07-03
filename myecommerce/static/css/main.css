@@ -1,5 +1,6 @@
 body {
   background-color: hsl(0, 0%, 98%);
+  box-sizing: border-box;
 }
 
 h1,
@@ -56,6 +57,7 @@ h6 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+  padding: 0 20px;
   margin-bottom: 40px;
 }
 
@@ -145,7 +147,7 @@ h6 {
   margin: 0 auto;
   padding: 0 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   grid-gap: 10px;
   align-items: flex-start;
   justify-content: center;
